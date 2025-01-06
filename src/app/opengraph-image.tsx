@@ -5,7 +5,7 @@ import { fullName } from 'src/helpers/utils';
 
 const theme = resumeConfig.imageTheme;
 
-export const alt = 'Professional Résumé';
+export const alt = 'Resumen';
 export const contentType = 'image/png';
 export const runtime = 'edge';
 export const size = {
@@ -45,13 +45,13 @@ export default function og(): ImageResponse {
             }}
             tw="text-6xl"
           >
-            Professional Résumé
+            Resumen
           </div>
           <div
             style={{ color: getAccentColor(12, theme) }}
             tw="mt-12 rounded-lg text-4xl"
           >
-            Available online or as a PDF
+            Online y en PDF
           </div>
         </div>
       </div>
