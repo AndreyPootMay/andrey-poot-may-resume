@@ -23,9 +23,7 @@ import CircleBriefcase from 'src/components/pdf/icons/circle-briefcase';
 import CircleCheck from 'src/components/pdf/icons/circle-check';
 import CircleGraduationCap from 'src/components/pdf/icons/circle-graduation-cap';
 import CircleIdCard from 'src/components/pdf/icons/circle-id-card';
-import CirclePaintbrush from 'src/components/pdf/icons/circle-paintbrush';
 import CircleUser from 'src/components/pdf/icons/circle-user';
-import Star from 'src/components/pdf/icons/star';
 import { getAccentColor, getNeutralColor } from 'src/helpers/colors';
 import {
   fullName,
@@ -137,7 +135,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: spacers[4],
   },
-  headerTitle: { fontSize: fontSizes.xl, fontWeight: 700 },
+  headerTitle: { fontSize: '15px', fontWeight: 700 },
   headerSubtitle: { fontSize: fontSizes.m, fontWeight: 700 },
   main: {
     alignSelf: 'stretch',
@@ -305,9 +303,9 @@ export default function PDF({ privateInformation }: PDFProperties): ReactNode {
                 <CircleIdCard size={fontSizes.m} />
                 <Text>Datos de contacto</Text>
               </View>
-              <View style={styles.flexRow}>
-                <Text style={styles.bold}>Location:</Text>
+              <View>
                 <Text>&nbsp;{personal.location}</Text>
+                <Text>&nbsp;{personal.email}</Text>
               </View>
               {privateInformation?.map((privateField) => (
                 <View key={privateField._id}>
@@ -319,18 +317,11 @@ export default function PDF({ privateInformation }: PDFProperties): ReactNode {
             <View style={styles.section}>
               <View style={styles.sectionHeading}>
                 <CircleCheck size={fontSizes.m} />
-                <Text>Skills &amp; Expertise</Text>
+                <Text>Skills</Text>
               </View>
               {allSkills.map((skill, skillIndex) => (
                 <View key={skill._id}>
                   <View style={styles.itemHeading}>
-                    <View style={styles.sectionHeadingStars}>
-                      {Array.from({
-                        length: allSkills.length - skillIndex,
-                      }).map((star, starIndex) => (
-                        <Star key={starIndex} size={fontSizes.xxs} />
-                      ))}
-                    </View>
                     <Text style={styles.bold}>{skill.title}</Text>
                   </View>
                   <Html {...htmlProperties}>{skill.body.html}</Html>
@@ -378,21 +369,6 @@ export default function PDF({ privateInformation }: PDFProperties): ReactNode {
                 <Html {...htmlProperties}>{achievement.body.html}</Html>
               </View>
             ))}
-          </View>
-          <View style={styles.section}>
-            <View style={styles.sectionHeading}>
-              <CirclePaintbrush size={fontSizes.m} />
-              <Text>{additionalInfo.title}</Text>
-            </View>
-            <Html
-              {...htmlProperties}
-              stylesheet={{
-                ...htmlProperties.stylesheet,
-                p: { marginBottom: spacers[1] },
-              }}
-            >
-              {additionalInfo.body.html}
-            </Html>
           </View>
         </View>
       </Page>
